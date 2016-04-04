@@ -1,5 +1,5 @@
 # pd0parser
-A javascript port of the (USF-COT)[https://github.com/USF-COT] python (pd0 parser)[https://github.com/USF-COT/trdi_adcp_readers/blob/master/trdi_adcp_readers/pd0/pd0_parser.py].
+A javascript port of the [USF-COT](https://github.com/USF-COT) python [pd0 parser](https://github.com/USF-COT/trdi_adcp_readers/blob/master/trdi_adcp_readers/pd0/pd0_parser.py).
 
 # Example
 ```javascript
@@ -19,4 +19,4 @@ A javascript port of the (USF-COT)[https://github.com/USF-COT] python (pd0 parse
     });
 ```
 
-(Live Example)[//IrishMarineInstiute.github.io/pdo-parser/]
+[Live Example](https://IrishMarineInstiute.github.io/pdo-parser/)
