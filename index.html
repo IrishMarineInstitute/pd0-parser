@@ -6,7 +6,7 @@
 <body>
   <h1>PD0 Parser Example</h1>
   <label for="pd0url">URL:</label>
-  <input style="width: 80%" id="pd0url" value="http://spiddal.marine.ie/data/adcps/TRDI-WHB600Hz-1323/2016/04/02/TRDI-WHB600Hz-1323_20160402.pd0">
+  <input style="width: 80%" id="pd0url" value="https://github.com/USF-COT/trdi_adcp_readers/blob/master/C12AN_90.PD0?raw=true">
   <input type="button" id="parse-button" value="Go!">
   <div id="info"></div>
   <script>
@@ -19,7 +19,7 @@
   };
   var loadPd0 = function(){
     var pd0url = document.getElementById("pd0url").value;
-    fetch(pd0url).then(function(response) {
+    fetch(pd0url,{mode: 'no-cors'}).then(function(response) {
         return response.arrayBuffer();
       }).then(function(ab) {
         var buffer = new Uint8Array(ab);
