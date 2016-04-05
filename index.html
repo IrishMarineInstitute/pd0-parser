@@ -4,19 +4,30 @@
   <script src="pd0parser.js"></script>
 </head>
 <body>
+  <h1>PD0 Parser Example</h1>
+  <label for="pd0url">URL:</label>
+  <input style="width: 80%" id="pd0url" value="http://spiddal.marine.ie/data/adcps/TRDI-WHB600Hz-1323/2016/04/02/TRDI-WHB600Hz-1323_20160402.pd0">
+  <input type="button" id="parse-button" value="Go!">
+  <div id="info"></div>
   <script>
   var withPd0s = function(array_of_pd0s){
-    document.body.innerHTML = "parsed "+array_of_pd0s.length+" pd0s. See console for details.";
+    document.getElementById("info").innerHTML = "parsed "+array_of_pd0s.length+" pd0s. See console for details.";
     console.log(array_of_pd0s);
   };
-  fetch('http://spiddal.marine.ie/data/adcps/TRDI-WHB600Hz-1323/2016/04/02/TRDI-WHB600Hz-1323_20160402.pd0')
-    .then(function(response) {
-      return response.arrayBuffer();
-    }).then(function(ab) {
-      var buffer = new Uint8Array(ab);
-      document.body.innerHTML = "parsing pd0...";
-      new pd0parser().parse(buffer).then(withPd0s)
-    });
+  var errorHandler = function(err){
+    document.getElementById("info").innerHTML = err;
+  };
+  var loadPd0 = function(){
+    var pd0url = document.getElementById("pd0url").value;
+    fetch(pd0url).then(function(response) {
+        return response.arrayBuffer();
+      }).then(function(ab) {
+        var buffer = new Uint8Array(ab);
+          document.getElementById("info").innerHTML = "parsing pd0...";
+        new pd0parser().parse(buffer).then(withPd0s).catch(errorHandler);
+      }).catch(errorHandler);
+  };
+  document.getElementById("parse-button").onclick = loadPd0;
   </script>
 </body>
 </html>
