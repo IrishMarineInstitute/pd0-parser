@@ -368,6 +368,11 @@ m.__parse = function(pd0_bytes,resolve,reject,parsed_pd0s){
     // Read in header
     data['header'] = m.parse_fixed_header(pd0_bytes);
 
+		if(pd0_bytes.length < data['header']['number_of_bytes']){
+			console.log("data appears truncated? See https://github.com/IrishMarineInstitute/pd0-parser/issues/1")
+			resolve(parsed_pd0s);
+      return;
+		}
     // Run checksum
     m.validate_checksum(pd0_bytes, data['header']['number_of_bytes']);
 
