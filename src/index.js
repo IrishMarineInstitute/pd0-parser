@@ -1,3 +1,4 @@
+const BufferPack = require('./bufferpack');
 function pd0parser() {
   var m = this, struct = new BufferPack();
   //TODO: extract buffepack and use npm.
@@ -405,19 +406,5 @@ m.__parse = function(pd0_bytes,resolve,reject,parsed_pd0s){
   };
 };
 
-(function(){
-var loadscript = function(src){
-  console.log("pd0parser loading script "+src);
- var script = document.createElement('script');
- script.type = 'text/javascript';
- script.async = true;
- script.src = src;
- document.getElementsByTagName('head')[0].appendChild(script);
-};
-if (typeof fetch != 'function') {
-  loadscript("https://cdnjs.cloudflare.com/ajax/libs/fetch/0.10.1/fetch.min.js");
-}
-if (typeof BufferPack != 'function') {
-  loadscript("bufferpack.js");
-}
-})();
+module.exports = pd0parser;
+

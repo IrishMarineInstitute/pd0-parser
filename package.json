@@ -1,0 +1,33 @@
+{
+  "name": "pd0-parser",
+  "version": "1.0.0",
+  "description": "parser for RDI Acoustic Doppler Current Profiler (ADCP) files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IrishMarineInstitute/pd0-parser.git"
+  },
+  "keywords": [
+    "marine",
+    "adcp",
+    "acoustic",
+    "doppler",
+    "current",
+    "profiler"
+  ],
+  "author": "Robert Fuller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IrishMarineInstitute/pd0-parser/issues"
+  },
+  "homepage": "https://github.com/IrishMarineInstitute/pd0-parser#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}

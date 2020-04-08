@@ -19,4 +19,4 @@ A javascript port of the [USF-COT](https://github.com/USF-COT) python [pd0 parse
     });
 ```
 
-[Live Example](https://irishmarineinstitute.github.io/pd0-parser/)
+[Live Example](https://irishmarineinstitute.github.io/pd0-parser/demo/)

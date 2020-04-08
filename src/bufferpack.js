@@ -294,4 +294,4 @@ function BufferPack() {
   };
 };
 
-//module.exports = new BufferPack();
+module.exports = BufferPack;

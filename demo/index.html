@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../dist/pd0parser.js"></script>
+  <link href="jsonTree.css" rel="stylesheet" />
+  <script src="jsonTree.js"></script>
+  <script src='nprogress.js'></script>
+  <link rel='stylesheet' href='nprogress.css'/>
+</head>
+<body>
+  <h1>PD0 Parser Example</h1>
+  <label for="pd0url">URL:</label>
+  <input style="width: 80%" id="pd0url" value="https://irishmarineinstitute.github.io/pd0-parser/TRDI-WHB600Hz-1323_20160404.pd0">
+  <input type="button" id="parse-button" value="Go!">
+  <br/>
+  OR
+  <br/>
+  <label>Upload your own file <input id="pd0file" type="file"></label>
+  <div id="info"></div>
+  <div id="wrapper"></div>
+  <script>
+  var withPd0s = function(array_of_pd0s){
+    document.getElementById("info").innerHTML = "parsed "+array_of_pd0s.length+" pd0s.";
+    var wrapper = document.getElementById("wrapper");
+    console.log(array_of_pd0s);
+    NProgress.set(0.8);
+    var tree = jsonTree.create(array_of_pd0s, wrapper);
+    NProgress.done();
+
+  };
+  var errorHandler = function(err){
+    NProgress.done();
+    document.getElementById("info").innerHTML = err;
+		throw err;
+  };
+  var tidy = function(){
+    document.getElementById("wrapper").innerHTML = "";
+  }
+  var loadPd0 = function(){
+    tidy();
+    NProgress.start();
+    var pd0url = document.getElementById("pd0url").value;
+    fetch(pd0url).then(function(response) {
+        return response.arrayBuffer();
+      }).then(function(ab) {
+        NProgress.set(0.4);
+        var buffer = new Uint8Array(ab);
+          document.getElementById("info").innerHTML = "parsing pd0...";
+        new pd0parser().parse(buffer).then(withPd0s).catch(errorHandler);
+      }).catch(errorHandler);
+  };
+  document.getElementById("parse-button").onclick = loadPd0;
+  document.getElementById("pd0file").onchange = function(e){
+    tidy();
+    NProgress.start();
+    var reader = new FileReader();
+    reader.onload = function(){
+      NProgress.set(0.4);
+      var buffer = new Uint8Array(this.result);
+      new pd0parser().parse(buffer).then(withPd0s).catch(errorHandler);
+    };
+    reader.readAsArrayBuffer(e.target.files[0]);
+  }
+  </script>
+</body>
+</html>
