@@ -159,16 +159,22 @@ function pd0parser() {
           variable_data['rtc_hundredths']*10
         );
     }else{
-      data['timestamp'] = Date.UTC(
+     data['timestamp'] = Date.UTC(
           variable_data['rtc_y2k_year'] + variable_data['rtc_y2k_century'] * 100,
           variable_data['rtc_y2k_month'] -1,
           variable_data['rtc_y2k_day'],
           variable_data['rtc_y2k_hour'],
           variable_data['rtc_y2k_minute'],
-          variable_data['rtc_y2k_second'],
+          variable_data['rtc_y2k_seconds'],
           variable_data['rtc_y2k_hundredths']*10
         );
-  }
+    }
+    try{
+      data.timestamp = new Date(data.timestamp).toISOString();
+
+    }catch(e){
+
+    }
     return variable_data;
   };
 

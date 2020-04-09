@@ -4,7 +4,7 @@
   "description": "parser for RDI Acoustic Doppler Current Profiler (ADCP) files",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "webpack"
   },
   "repository": {
@@ -27,6 +27,8 @@
   "homepage": "https://github.com/IrishMarineInstitute/pd0-parser#readme",
   "dependencies": {},
   "devDependencies": {
+    "jest": "^25.3.0",
+    "node-fetch": "^2.6.0",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   }
