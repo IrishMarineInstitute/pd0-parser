@@ -28,7 +28,7 @@
   "dependencies": {},
   "devDependencies": {
     "jest": "^25.3.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   }
